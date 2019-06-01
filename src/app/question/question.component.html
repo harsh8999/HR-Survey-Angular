@@ -1,0 +1,92 @@
+<div style="text-align:center;margin: 50px 150px;" class="example-container" [class.mat-elevation-z8]="isActive" >
+  <form [formGroup]="myForm"  >
+      <mat-card  [class.mat-elevation-z4]="isActive">
+
+          <mat-card-title >Questionary</mat-card-title>
+          </mat-card>
+    <!-- <mat-form-field style="width: 850px;">
+      <h3><input matInput placeholder="Untitled form" formControlName="title" matTooltip="Add your title here."></h3>
+    </mat-form-field> -->
+    <div formArrayName="questionGroup" style="margin: 50px 50px;padding: 5px">
+      <div [class.mat-elevation-z8]="isActive" *ngFor="let question of QuestionGroupForm.controls; let i = index" [formGroupName]="i">
+        <div style="margin: 50px 50px;padding: 10px">
+        <mat-form-field style="width: 538px;" >
+          <input matInput placeholder="Question {{i+1}}" formControlName = "question" matTooltip="Add your question here.">
+        </mat-form-field>
+       &nbsp;
+       &nbsp;
+       <mat-form-field style="width: 155px;">
+          <mat-label>Select type</mat-label> 
+        <mat-select matNativeControl required #choice formControlName="selected_type" matTooltip="Select answer input type.">
+            <mat-option value="textarea">Text Area</mat-option>
+            <mat-option value="multi_choice">Multiple Choice</mat-option>
+            <mat-option value="radio_button">Radio Button</mat-option>
+        </mat-select>
+      </mat-form-field>
+        <div style="text-align: right; ">
+            <mat-slide-toggle color="primary" formControlName="is_required" matTooltip="Do you want to make this field required.">Required</mat-slide-toggle>
+            &nbsp;
+        <button mat-icon-button color="warn" (click)="deleteQuestion(i)" 
+                matTooltip="Delete this question." [disabled]="QuestionGroupForm.length<=1">
+                <mat-icon>
+                  close
+                </mat-icon>
+        </button>
+        </div>
+        <!-- textbox -->
+        <div *ngIf="choice.value == 'textarea'" style="text-align:left;padding-left: 20px;" >
+          <mat-form-field class="example-full-width-input" >
+            <input matInput  disabled="true" placeholder="Text Area" >
+          </mat-form-field>
+        </div>
+          <!-- multiple choice -->
+          <div *ngIf="choice.value == 'multi_choice'" style="text-align:left;padding-left: 20px;" >
+            <div  formArrayName="optionsGroup">
+              <div *ngFor="let option of question.get('optionsGroup').controls; let ind = index" [formGroupName]="ind" >
+                <section class="example-full-width-input">
+                  <mat-checkbox disabled="true"></mat-checkbox>&nbsp;
+                  <input type="text" formControlName="option" placeholder="option {{ind+1}}" >
+                  <button mat-icon-button [disabled]="question.get('optionsGroup').length<=1" color="warn" (click)=deleteOption(question,ind) matTooltip="Delete this option."><mat-icon>close</mat-icon></button>
+                </section>
+              </div>
+                <button mat-icon-button color="primary" (click)="addOptions(question)" matTooltip="Add new option."><mat-icon>add</mat-icon></button>
+              </div>  
+          </div>
+
+          <!-- Radio  button -->
+          <div *ngIf="choice.value == 'radio_button'" style="text-align:left;padding-left: 20px;" >
+            <div formArrayName="optionsGroup">
+              <div *ngFor="let option of question.get('optionsGroup').controls; let indt = index" [formGroupName]="indt" >
+                <mat-radio-group>
+                  <mat-radio-button disabled="true">
+                  </mat-radio-button>&nbsp;
+                </mat-radio-group>
+                  <input type="text" formControlName="option" placeholder="option {{indt+1}}" >
+                  <button mat-icon-button [disabled]="question.get('optionsGroup').length<=1" color="warn" (click)=deleteOption(question,ind) matTooltip="Delete this option."><mat-icon>close</mat-icon></button>
+              </div>
+                <button mat-icon-button color="primary" (click)="addOptions(question)" matTooltip="Add new option."><mat-icon>add</mat-icon></button>
+            </div>
+          </div>
+
+          
+         
+      </div>
+      </div>
+    </div>
+   
+      <div>
+        <button mat-icon-button (click)="addQuesion()" color="primary" matTooltip="Add new question."><mat-icon>add</mat-icon></button>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        
+    
+          <button mat-stroked-button color="primary" (click)="submit()">Submit</button>
+        
+      </div>
+    
+  </form>
+</div>

@@ -1,0 +1,63 @@
+<div style="width: 100%; display: table;">
+  <div style="display: table-row">
+      <div style="width: 600px; display: table-cell;"> 
+        <div class="example-container">
+        <h2>Questions</h2>
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="questions"
+    [cdkDropListConnectedTo]="[doneList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)"
+    >
+    <div class="example-box" *ngFor="let question of questions;let i = index" cdkDrag>
+      {{i+1}})  {{question.question}}
+      <!-- <div *cdkDragPreview>
+      </div> -->
+    </div>
+  </div>
+      </div>
+    </div>
+    <mat-divider [vertical]="true"></mat-divider>
+  <div style="display: table-cell;">  
+    <div class="example-container">
+    <h2>Survey Questions</h2>
+    <div
+      cdkDropList
+      #doneList="cdkDropList"
+      [cdkDropListData]="surveys"
+      [cdkDropListConnectedTo]="[todoList]"
+      class="example-options"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let survey of surveys; let ind = index" cdkDrag>{{ind+1}})  {{survey.question}}</div>
+    </div>
+    <br><br>
+    <div>
+      <button  mat-icon-button (click)="openDialog()" color="primary" matTooltip="Add new to survey question."><mat-icon>add</mat-icon></button>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+        <button  mat-raised-button  color="primary" (click)="onPreview()" matTooltip="Pre-view survey questions." routerLink="/survey-preview">Pre-View Survey</button>
+    </div>
+  </div>
+</div> 
+  
+</div>
+
+</div>
