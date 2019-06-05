@@ -1,7 +1,8 @@
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-import { SurveyComponent } from './../survey/survey.component';
 import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from '../api-service.service';
+import { CdkDragDrop } from '@angular/cdk/drag-drop/typings/drag-events';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-survey-preview',
@@ -9,47 +10,43 @@ import { ApiServiceService } from '../api-service.service';
   styleUrls: ['./survey-preview.component.scss']
 })
 export class SurveyPreviewComponent implements OnInit {
-  surveyQuestions ;
+  surveyQuestions;
   isActive=true;
-  myForm = this.fb.group({questionGroup: this.fb.array([this.fb.group({})]),});
-  
-  get QuestionGroupForm()
-  {
-    const x =  this.myForm.get('questionGroup') as FormArray;
-    return x
-  }
-  
-  constructor(private _apiServices: ApiServiceService,private fb: FormBuilder,) { }
+  panelOpenState = false;
+  questionId:any[]=[];
+  startDate ;
+  endDate;
+
+  survey= {
+    title : '',
+    startDate: null,
+    endDate: null,
+    questionID : this.questionId
+  };
+
+  constructor(private _apiServices: ApiServiceService) { }
 
   ngOnInit() {
     this.surveyQuestions = this._apiServices.getPriviewSurvey();
 
     console.log("priview",this.surveyQuestions);
-
-      for (var surveyQuestion of this.surveyQuestions)
-      {  
-        // console.log("survey",surveyQuestion)
-        this.addQuestion(surveyQuestion);
+    for(let i of this.surveyQuestions){
+      this.questionId.push(i.id);
+    }
+  }
+  
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.surveyQuestions, event.previousIndex, event.currentIndex);
+  }
+  
+  postSurvey(){
+    this.survey.startDate =  new DatePipe('en-US').transform(this.startDate, 'yyyy-MM-dd');
+    this.survey.endDate =  new DatePipe('en-US').transform(this.endDate, 'yyyy-MM-dd');
+    this._apiServices.postSurvey(this.survey).subscribe(
+      (data)=>
+      {
+        console.log(data)
       }
-      console.log(this.myForm.value)
-
-      this.QuestionGroupForm.removeAt(0);
-      console.log(this.myForm.value)
+      );
   }
-
-  addQuestion(surveyQuestion){
-    const questGrp = this.fb.group({
-      question: surveyQuestion.question,
-      is_required: surveyQuestion.is_required,
-      selected_type: surveyQuestion.selected_type,
-      optionsGroup: this.fb.array([this.fb.group({
-        option: [surveyQuestion.options,Validators.required],
-      })
-  ])
-    });
-
-    this.QuestionGroupForm.push(questGrp);
-  }
-
- 
 }

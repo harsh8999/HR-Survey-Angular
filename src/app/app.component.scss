@@ -23,4 +23,14 @@
     flex: 1 1 auto;
   }
 
+  $color_1: white;
+
+mat-toolbar {
+	a {
+		display: inline-block;
+		margin: 0 10px;
+		color: $color_1;
+		text-decoration: none;
+	}
+}
  

@@ -1,0 +1,78 @@
+<!-- <div>
+    <mat-form-field style="width: 25%">
+        <input matInput placeholder="Survey Title" [(ngModel)]="survey.title" required>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="startDate" placeholder="Choose a start date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+            
+        <input matInput [matDatepicker]="endpicker" placeholder="Choose a end date" [(ngModel)]="endDate">
+        <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
+        <mat-datepicker #endpicker></mat-datepicker>
+    </mat-form-field>
+</div> -->
+
+<div>
+  <h2>
+    Survey
+  </h2>
+</div>
+<div class="example-container" [class.mat-elevation-z8]="isActiveWidth" >
+  <div class="example-full-width" >
+    <div *ngFor="let item of surveyItems; let i=index" [class.mat-elevation-z4]="isActiveWidth" style="margin: 20px 20px">
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="flex-container-left">
+                      <h4>{{i+1}}. {{item.title}}</h4>
+                    </mat-panel-title>
+                    <mat-panel-description class="flex-container-right">
+                      <h4>Status: <span style="background-color:green;border-radius: 25px;padding: 10px;color:white;" *ngIf="item.is_active">Open</span>
+                        <span *ngIf="!item.is_active" style="background-color:red;border-radius: 25px;padding: 10px;color:white;">Close</span>
+                      </h4>
+                      &nbsp;
+                        &nbsp;&nbsp;
+                        &nbsp;
+                        <h4>Start Date : {{item.startDate}}</h4>
+                        &nbsp;
+                        &nbsp;&nbsp;
+                        &nbsp;
+                        <h4>End Date : {{item.endDate}}</h4>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="flec-container-left">
+                  <div>
+                    <h3>Question ID</h3>
+                  </div>
+                  <div *ngFor="let id of item.questionID;let in=index">
+                     {{in+1}}.  {{id}}
+                  </div>
+                </div>
+              
+              
+
+                  <div class="flex-container-right">
+                    
+                   
+                    <button mat-raised-button color="warn" (click)="deleteSurvey(item.id,i)" matTooltip="Delete this survey.">Delete</button>
+                    &nbsp;
+                    <button mat-raised-button color="primary" (click)="openDialog(i)" matTooltip="Edit this survey.">Edit</button>
+                    &nbsp;
+                    <button mat-raised-button color="{{item.is_active ? 'warn':'primary'}}" (click)="startStopSurvey(i)" matTooltip="{{item.is_active?'Stop this survey.':'Start this survey'}}">{{item.is_active?  'Stop':'Start' }}</button>
+                    
+                    
+                  
+                </div>
+              
+
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+  </div>      
+</div>
+

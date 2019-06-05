@@ -25,9 +25,26 @@
           <button mat-icon-button (click)="drawer.toggle()">
               <mat-icon>menu</mat-icon>
           </button>
-          <span
-            routerLink="/">HR Application
-          </span>
+          <a routerLink="/">HR Application</a>
+        <!-- <a routerLink="/question">Questionary</a> -->
+        <!-- <a routerLink="/survey">Survey</a> -->
+          
+        <!-- Quesion menu -->
+        <button mat-button [matMenuTriggerFor]="menuQuestion">Question</button>
+
+        <mat-menu #menuQuestion ="matMenu">
+            <button mat-menu-item routerLink="/questionlist">Question List</button>
+            <button mat-menu-item routerLink="/question">Add Questions</button>
+          </mat-menu>
+
+          <!-- Survey Menu -->
+        <button mat-button [matMenuTriggerFor]="menuSurvey">Survey</button>
+
+        <mat-menu #menuSurvey ="matMenu">
+            <button mat-menu-item routerLink="/survey-list">Survey List</button>
+            <button mat-menu-item routerLink="/survey">Make Survey</button>
+          </mat-menu>
+
           <span class="spacer"></span>
           <!-- can write username to see it on top right  -->
       </mat-toolbar-row>

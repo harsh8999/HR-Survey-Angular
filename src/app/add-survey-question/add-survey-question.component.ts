@@ -82,17 +82,11 @@ export class AddSurveyQuestionComponent implements OnInit {
       console.log(data),
       (err)=>console.log(err)
     });
-    // console.log(this.myForm.value);
-    this.dialogRef.close();
-    // console.log(this.myForm.value);
 
+    this.dialogRef.close();
   }
 
   onCancel(){
     this.dialogRef.close();
   }
-
-  //   onNoClick(): void {
-//     this.dialogRef.close();
-//   }
 }

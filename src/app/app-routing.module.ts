@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SurveyComponent } from './survey/survey.component';
 import { SurveyPreviewComponent } from './survey-preview/survey-preview.component';
+import { SurveyListComponent } from './survey-list/survey-list.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path:'survey-preview',
     component:SurveyPreviewComponent
+  },
+  {
+    path:'survey-list',
+    component:SurveyListComponent
   }
 ];
 

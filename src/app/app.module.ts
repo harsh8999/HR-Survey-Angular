@@ -16,7 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { QuestionComponent } from './question/question.component';
-import { MatFormFieldModule, MatInputModule, MatSelectModule, MatListModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatSelectModule, MatListModule, MatNativeDateModule } from '@angular/material';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -28,7 +28,12 @@ import {MatDividerModule} from '@angular/material/divider';
 import { AddSurveyQuestionComponent } from './add-survey-question/add-survey-question.component';
 import { SurveyPreviewComponent } from './survey-preview/survey-preview.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatMenuModule} from '@angular/material/menu';
+
 import { FormsModule } from '@angular/forms';
+import { SurveyListComponent } from './survey-list/survey-list.component';
+import { EditSurveyQuestionComponent } from './edit-survey-question/edit-survey-question.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +41,8 @@ import { FormsModule } from '@angular/forms';
     SurveyComponent,
     AddSurveyQuestionComponent,
     SurveyPreviewComponent,
+    SurveyListComponent,
+    EditSurveyQuestionComponent,
     
   ],
   imports: [
@@ -61,10 +68,13 @@ import { FormsModule } from '@angular/forms';
     MatDividerModule,
     MatDialogModule,
     MatExpansionModule,
-    FormsModule
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatMenuModule
   ],
-  providers: [],
+  providers: [MatDatepickerModule,],
   bootstrap: [AppComponent],
-  entryComponents: [AddSurveyQuestionComponent]
+  entryComponents: [AddSurveyQuestionComponent,EditSurveyQuestionComponent]
 })
 export class AppModule { }
