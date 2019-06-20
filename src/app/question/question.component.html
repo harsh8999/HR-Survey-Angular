@@ -65,26 +65,21 @@
                 <button mat-icon-button color="primary" (click)="addOptions(question)" matTooltip="Add new option."><mat-icon>add</mat-icon></button>
             </div>
           </div>
-
-          
-         
       </div>
       </div>
     </div>
-   
-      <div>
+    <div class="flex-container-left">
         <button mat-icon-button (click)="addQuesion()" color="primary" matTooltip="Add new question."><mat-icon>add</mat-icon></button>
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        &nbsp;
+    </div>
+      
+    <mat-action-row>
         
-    
-          <button mat-stroked-button color="primary" (click)="submit()">Submit</button>
-        
-      </div>
+        <div class="flex-container-right">
+            
+          <button mat-raised-button color="primary"  (click)="submit(); myForm.reset()" matTooltip="Submit questions.">Submit</button>
+        </div>
+      </mat-action-row>
+      
     
   </form>
 </div>

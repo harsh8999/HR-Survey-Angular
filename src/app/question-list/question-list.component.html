@@ -1,0 +1,66 @@
+<div cdkDropList class="example-list" >
+<div class="example-container" >
+  <div class="example-full-width" >
+    <div>
+      <h1>
+          <mat-icon>question_answer</mat-icon>
+        Questions
+      </h1>
+    </div>
+    <div *ngFor="let question of questions; let i=index" [class.mat-elevation-z4]="isActive" style="margin: 20px 20px">
+      <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <h3>{{i+1}}. {{question.question}}</h3>
+                </mat-panel-title>
+                <mat-panel-description class="flex-container">
+                  <!-- <h4> Type: {{question.selected_type}} </h4> -->
+                  <h4 *ngIf="question.selected_type == 'textarea'">Type: Text Area</h4>
+                  <h4 *ngIf="question.selected_type == 'radio_button'">Type: Radio Button</h4>
+                  <h4 *ngIf="question.selected_type == 'multi_choice'">Type: Multi-Choice</h4>
+
+                  &nbsp;
+                  &nbsp;&nbsp;
+                  &nbsp;
+                  <h4>Required: {{question.is_required}}</h4>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <!-- textbox -->
+            <div *ngIf="question.selected_type == 'textarea'" style="text-align:left;padding-left: 20px;" >
+              <mat-form-field class="example-full-width-input">
+                <input matInput  disabled="true" placeholder="Text Area" >
+              </mat-form-field>
+            </div>
+
+            <!-- multiple choice -->
+            <div *ngIf="question.selected_type == 'multi_choice'" style="text-align:left;padding-left: 20px;" >
+              <div *ngFor="let option of question.options">
+                <mat-checkbox disabled="true">
+                  {{option.option}}
+                </mat-checkbox>    
+              </div>
+            </div>
+            <!-- radio_button -->
+            <div *ngIf="question.selected_type == 'radio_button'" style="text-align:left;padding-left: 20px;" >
+              <div *ngFor="let option of question.options">
+                <mat-radio-group>
+                  <mat-radio-button disabled="true">
+                      {{option.option}}
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div>
+              <!-- button logic -->
+            </div>
+            <mat-action-row>
+                <button mat-icon-button color="warn" (click)="deleteQuestion(i)" matTooltip="Delete this survey."><mat-icon>delete_outline</mat-icon></button>
+                <button mat-icon-button color="primary" (click)="openDialog(i)" matTooltip="Edit this survey."><mat-icon>edit</mat-icon></button>
+              </mat-action-row>
+            
+        </mat-expansion-panel>
+    </mat-accordion>
+    
+</div>
+      

@@ -10,7 +10,6 @@
     </mat-form-field>
     &nbsp;
     <mat-form-field>
-            
         <input matInput [matDatepicker]="endpicker" placeholder="Choose a end date" [(ngModel)]="endDate">
         <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
         <mat-datepicker #endpicker></mat-datepicker>
@@ -47,31 +46,26 @@
                 </mat-expansion-panel-header>
                 <div class="flec-container-left">
                   <div>
-                    <h3>Question ID</h3>
+                      <h3> <mat-icon>question_answer</mat-icon> Questions</h3>
                   </div>
                   <div *ngFor="let id of item.questionID;let in=index">
                      {{in+1}}.  {{id}}
                   </div>
                 </div>
-              
-              
-
-                  <div class="flex-container-right">
-                    
-                   
-                    <button mat-raised-button color="warn" (click)="deleteSurvey(item.id,i)" matTooltip="Delete this survey.">Delete</button>
+                <mat-action-row>
+                    <div class="flex-container-right">
+                        <button routerLink="/responses-list" mat-raised-button color="primary" (click)="openResponses(item.id)" matTooltip="See the Response of this survey.">Response</button>
+                        &nbsp;
+                    <button mat-icon-button color="warn" (click)="deleteSurvey(item.id,i)" matTooltip="Delete this survey."><mat-icon>delete_outline</mat-icon></button>
                     &nbsp;
-                    <button mat-raised-button color="primary" (click)="openDialog(i)" matTooltip="Edit this survey.">Edit</button>
+                    <button mat-icon-button color="primary" (click)="openDialog(i)" matTooltip="Edit this survey."><mat-icon>edit</mat-icon></button>
                     &nbsp;
-                    <button mat-raised-button color="{{item.is_active ? 'warn':'primary'}}" (click)="startStopSurvey(i)" matTooltip="{{item.is_active?'Stop this survey.':'Start this survey'}}">{{item.is_active?  'Stop':'Start' }}</button>
-                    
-                    
-                  
+                    <button mat-icon-button color="{{item.is_active ? 'warn':'primary'}}" (click)="startStopSurvey(i)" matTooltip="{{item.is_active?'Stop this survey.':'Start this survey'}}"><mat-icon>{{item.is_active?  'stop':'play_arrow' }}</mat-icon></button>
                 </div>
-              
-
+              </mat-action-row>
             </mat-expansion-panel>
         </mat-accordion>
+        
     </div>
   </div>      
 </div>

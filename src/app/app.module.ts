@@ -30,10 +30,21 @@ import { SurveyPreviewComponent } from './survey-preview/survey-preview.componen
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatMenuModule} from '@angular/material/menu';
-
+import {MatTableModule} from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import { SurveyListComponent } from './survey-list/survey-list.component';
 import { EditSurveyQuestionComponent } from './edit-survey-question/edit-survey-question.component';
+import { QuestionListComponent } from './question-list/question-list.component';
+import { QuestionEditComponent } from './question-edit/question-edit.component';
+import { AnswerComponent } from './answer/answer.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { ResponsesListComponent } from './responses-list/responses-list.component';
+import { ChartsModule } from 'ng2-charts';
+import {MatTabsModule} from '@angular/material/tabs';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { LoginComponent } from './login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +54,11 @@ import { EditSurveyQuestionComponent } from './edit-survey-question/edit-survey-
     SurveyPreviewComponent,
     SurveyListComponent,
     EditSurveyQuestionComponent,
-    
+    QuestionListComponent,
+    QuestionEditComponent,
+    AnswerComponent,
+    ResponsesListComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,10 +86,18 @@ import { EditSurveyQuestionComponent } from './edit-survey-question/edit-survey-
     FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatMenuModule
+    MatMenuModule,
+    MatPaginatorModule,
+    MatTableModule,
+    ChartsModule,
+    MatTabsModule,
+    NgxChartsModule,
+    MatGridListModule
   ],
+  
   providers: [MatDatepickerModule,],
   bootstrap: [AppComponent],
-  entryComponents: [AddSurveyQuestionComponent,EditSurveyQuestionComponent]
+  entryComponents: [AddSurveyQuestionComponent, EditSurveyQuestionComponent, QuestionEditComponent]
+  
 })
 export class AppModule { }

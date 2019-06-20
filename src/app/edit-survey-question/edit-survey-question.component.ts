@@ -15,15 +15,23 @@ export class EditSurveyQuestionComponent implements OnInit {
   _id:any[]=[];
   startDate;
   endDate;
-
+  questions=[]
   survey;  
   constructor(public dialogRef: MatDialogRef<EditSurveyQuestionComponent>,
     @Inject(MAT_DIALOG_DATA) private data,
     private _apiServices: ApiServiceService) { }
 
   ngOnInit() {
-    this.survey = this._apiServices.getPriviewSurvey();
-    // console.log(this.survey)
+    this.survey = this._apiServices.getLocalData();
+    console.log(this.survey);
+    for (let id of this.survey.questionID){
+        this._apiServices.getSpecificQuestions(id).subscribe(
+          (data)=>{
+            this.questions.push(data)
+          }
+        )
+      } 
+      console.log(this.questions)
     this.startDate = this.survey.startDate;
     this.endDate = this.survey.endDate;
   }

@@ -1,9 +1,12 @@
 <div>
+  <div class="flex-container-right">
+    <button mat-icon-button color="warn" (click)="onCancel()" matTooltip="close."><mat-icon>close</mat-icon></button>
+  </div>
   <h1>Edit Survey.</h1>
   <div>
     <div class="flex-container">
       <div style="flex-grow: 8">
-        <mat-form-field style="width: 70%;" >
+        <mat-form-field style="width: 70%;">
           <input matInput [(ngModel)]="survey.title" placeholder="title">
         </mat-form-field>
       </div>
@@ -20,25 +23,18 @@
         <mat-datepicker #endpicker></mat-datepicker>
     </mat-form-field>
 
-    <div>
+    <!-- <div>
         <mat-list role="list">
-         <h4> Question ID</h4>
+         <h4> <mat-icon>question_answer</mat-icon> Questions</h4>
           <mat-list-item role="listitem" *ngFor="let question of survey.questionID;let i = index">
             {{i+1}}. {{question}}
             &nbsp;
-            <!-- <button mat-icon-button [disabled]="survey.questionID.length<=1" color="warn" (click)="deleteQuestion(i)" matTooltip="Delete this question."><mat-icon>close</mat-icon></button> -->
+            <button mat-icon-button [disabled]="survey.questionID.length<=1" color="warn" (click)="deleteQuestion(i)" matTooltip="Delete this question."><mat-icon>close</mat-icon></button>
           </mat-list-item>
-          
         </mat-list>
-    </div>
-
-    
+    </div> -->
     <div class="flex-container-right">
-        <button mat-raised-button color="warn" (click)="onCancel()" matTooltip="close.">Close</button>
-        &nbsp;
-        
-        &nbsp;
-        <button mat-raised-button (click)="submit()" color="primary" matTooltip="Update this survey.">Update</button>
+        <button mat-icon-button (click)="submit()" color="primary" matTooltip="Update this survey."><mat-icon>update</mat-icon></button>
       </div>
     
   </div>

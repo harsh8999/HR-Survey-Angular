@@ -15,8 +15,13 @@
       {{i+1}})  {{question.question}}
       <!-- <div *cdkDragPreview>
       </div> -->
+      
     </div>
+   
   </div>
+  <div>
+      <button  mat-icon-button (click)="openDialog()" color="primary" matTooltip="Add new question to survey."><mat-icon>add</mat-icon></button>
+</div>
       </div>
     </div>
     <mat-divider [vertical]="true"></mat-divider>
@@ -34,7 +39,7 @@
     </div>
     <br><br>
     <div>
-      <button  mat-icon-button (click)="openDialog()" color="primary" matTooltip="Add new to survey question."><mat-icon>add</mat-icon></button>
+      
     &nbsp;
     &nbsp;
     &nbsp;

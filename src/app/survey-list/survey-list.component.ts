@@ -12,7 +12,7 @@ export class SurveyListComponent implements OnInit {
   isActiveWidth=true;
   questionID:any[]=[];
   surveyItems;
-
+  questionIdArr = []
  
 
   constructor(private _apiServices: ApiServiceService,public dialog: MatDialog) { }
@@ -23,9 +23,14 @@ export class SurveyListComponent implements OnInit {
         this.surveyItems = data;
         // console.log("data  ",data)
         // console.log("Survey Items",this.surveyItems);
+        
+      for (let item of this.surveyItems){
+        this.questionIdArr.push(item.questionID)
+      } 
+    // console.log(this.questionIdArr)
       }
     )
-        
+    
   }
 
   getQuestions(id){
@@ -51,7 +56,7 @@ export class SurveyListComponent implements OnInit {
   
   openDialog(i): void {
 
-    this._apiServices.saveSurvey(this.surveyItems[i]);
+    this._apiServices.saveLocalData(this.surveyItems[i]);
     
     const dialogRef = this.dialog.open(EditSurveyQuestionComponent, {
       width: '1300px',
@@ -66,8 +71,8 @@ export class SurveyListComponent implements OnInit {
   startStopSurvey(i){
     // send email logic
 
-   
-    this.surveyItems[i].is_active = !this.surveyItems[i].is_active
+    //  set true and false isActive
+    this.surveyItems[i].is_active = !this.surveyItems[i].is_active  
     
     this._apiServices.putSurvey(this.surveyItems[i], this.surveyItems[i].id).subscribe(
       (data)=>
@@ -81,4 +86,9 @@ export class SurveyListComponent implements OnInit {
     );
   }
 
+
+  openResponses(id){
+    console.log("id",id)
+    this._apiServices.saveLocalData(id);
+  }
 }

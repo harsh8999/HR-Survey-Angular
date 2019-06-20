@@ -1,0 +1,86 @@
+<mat-tab-group [color]="accent" mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+    <mat-tab label="Individual Responses">
+        
+            <div class="example-container" [class.mat-elevation-z8]="isActiveWidth" >
+            <div class="example-full-width"   >
+                <mat-accordion>
+                <div *ngFor="let item of myData; let i=index" [class.mat-elevation-z4]="isActiveWidth" style="margin: 20px 20px">
+                    
+                        <mat-expansion-panel >
+                            <mat-expansion-panel-header>
+                                <mat-panel-title class="flex-container-left">
+                                <h4>{{i+1}}. {{item.id}}</h4>
+                                </mat-panel-title>
+                                <mat-panel-description class="flex-container-right">
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <div class="flec-container-left">
+                                <div>
+                                    <h3> <mat-icon>question_answer</mat-icon>Questions</h3>
+                                </div>
+                                <div *ngFor="let response of item.survey_response;let in = index">
+                                    <div>
+                                    <h3>{{in+1}}.  {{response.question}}</h3>
+                                    </div>
+                                    <div>
+                                    Ans. {{response.answer}}
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </div>
+                    </mat-accordion>
+                    
+                    
+                
+            </div>      
+            </div>
+            
+         
+    </mat-tab>
+
+    <!-- chart part -->
+    <mat-tab label="Responses"> 
+            <div>
+                    <h1> <mat-icon>question_answer</mat-icon>Questions</h1>
+                </div>
+                
+
+        <div>
+                
+                        <div [class.mat-elevation-z4]="isActiveWidth" style="margin: 50px 50px;" *ngFor="let item of questionList; let i=index">
+                            <div>
+                                <h4>{{i+1}}. {{item.question}}</h4>
+                            </div>
+                            
+
+                               <div style="width: 500;height:500" *ngIf="item.selected_type == 'radio_button' || item.selected_type == 'multi_choice'">
+                               <ngx-charts-advanced-pie-chart 
+                                                [view]="view"
+                                                [scheme]="colorScheme"
+                                                [results]="chart[i]"
+                                                [gradient]="gradient"
+                                                (select)="onSelect($event)">
+                                </ngx-charts-advanced-pie-chart>
+                                
+                            </div>
+
+                            <div *ngIf="item.selected_type == 'textarea'">
+                                <div *ngFor="let answer of chart[i];let in = index">
+                                    {{in+1}} {{answer}}
+                                </div>
+                            </div>
+                            </div>
+                        
+                      
+            <!-- <div *ngFor="let in = index">
+                <div>
+                <h3>{{in+1}}.  {{response.question}}</h3>
+                </div> -->
+                
+        </div>
+        
+    </mat-tab>
+    
+  </mat-tab-group>
+

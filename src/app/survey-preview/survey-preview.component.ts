@@ -27,7 +27,7 @@ export class SurveyPreviewComponent implements OnInit {
   constructor(private _apiServices: ApiServiceService) { }
 
   ngOnInit() {
-    this.surveyQuestions = this._apiServices.getPriviewSurvey();
+    this.surveyQuestions = this._apiServices.getLocalData();
 
     console.log("priview",this.surveyQuestions);
     for(let i of this.surveyQuestions){

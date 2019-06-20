@@ -31,7 +31,7 @@ export class QuestionComponent implements OnInit {
         this.fb.group({
           question: ['',Validators.required],
           is_required: [false,Validators.required],
-          selected_type: ['textarea',Validators.required],
+          selected_type: [,Validators.required],
           optionsGroup: this.fb.array([this.fb.group({
                 option: [,Validators.required],
               })
@@ -55,7 +55,7 @@ export class QuestionComponent implements OnInit {
     const questGrp = this.fb.group({
       question: ['',Validators.required],
       is_required: [false,Validators.required],
-      selected_type: ['textarea',Validators.required],
+      selected_type: [,Validators.required],
       optionsGroup: this.fb.array([this.fb.group({
             option: [,Validators.required],
           })
@@ -101,6 +101,7 @@ export class QuestionComponent implements OnInit {
     this._apiServices.postQuestions(this.myForm.value).subscribe((data)=>
     {
       console.log(data);
+      
     },
     (err)=>
     {
@@ -108,5 +109,6 @@ export class QuestionComponent implements OnInit {
     }
     );
     console.log(this.myForm.value);
+    this.myForm.reset();
   }
 }

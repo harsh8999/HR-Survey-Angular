@@ -74,7 +74,7 @@ export class SurveyComponent implements OnInit {
     }
 
     onPreview(){
-      this._apiServices.saveSurvey(this.surveys);
+      this._apiServices.saveLocalData(this.surveys);
     }
   
 }

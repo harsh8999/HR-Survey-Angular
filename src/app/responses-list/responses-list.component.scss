@@ -20,19 +20,32 @@
   .example-full-width-input {
     width: 95%;
   }
+
+
+
+.flex-container-right {
+  display: flex;
+  justify-content: flex-end;
   
-  .flex-container {
-    display: flex;
-    align-items: stretch;
-   
-  }
-  .flex-container-right {
-    display: flex;
-    justify-content: flex-end;
-    
-  }
-  .flex-container-center {
-    display: flex;
-    justify-content: flex-start;
-    
-  }
+}
+
+.flex-container-left {
+  display: flex;
+  justify-content: flex-start;
+  
+}
+.flex-container {
+  display: flex;
+  justify-content: flex-end;
+  
+}
+
+.advanced-pie {
+  display: inline-block;
+  float: left;
+}
+
+.advanced-pie-legend-wrapper {
+  display: inline-block;
+}
+

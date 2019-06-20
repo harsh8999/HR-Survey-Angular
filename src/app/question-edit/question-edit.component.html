@@ -1,0 +1,71 @@
+<div class="example-container">
+    <div class="flex-container-right">
+        <button mat-icon-button color="warn" (click)="onCancel()" matTooltip="close."><mat-icon>close</mat-icon></button>
+      </div>
+    <div>
+      <h2>  Questionary</h2>
+    </div>
+        <div>
+          <mat-form-field style="width: 70%">
+            <input matInput placeholder="Question" [(ngModel)]="question.question" matTooltip="Edit your question here.">
+          </mat-form-field>
+         &nbsp;
+         <mat-form-field style="width: 20%;">
+            <mat-label>Select type</mat-label> 
+          <mat-select matNativeControl required  [(ngModel)]="question.selected_type" matTooltip="Select answer input type.">
+              <mat-option value="textarea">Text Area</mat-option>
+              <mat-option value="multi_choice">Multiple Choice</mat-option>
+              <mat-option value="radio_button">Radio Button</mat-option>
+          </mat-select>
+        </mat-form-field>
+          <div style="text-align: right;">
+              <mat-slide-toggle color="primary" [(ngModel)]="question.is_required" matTooltip="Do you want to make this field required.">Required</mat-slide-toggle>
+              &nbsp;
+          
+          </div>
+          <!-- textbox -->
+          <div *ngIf="question.selected_type == 'textarea'" style="text-align:left;padding-left: 20px;" >
+            <mat-form-field class="example-full-width-input" >
+              <input matInput  disabled="true" placeholder="Text Area" >
+            </mat-form-field>
+          </div>
+            <!-- multiple choice -->
+            <div *ngIf="question.selected_type == 'multi_choice'" style="text-align:left;padding-left: 20px;" >
+              
+                <div *ngFor="let option of question.options; let ind = index"  >
+                  <section class="example-full-width-input">
+                    <mat-checkbox disabled="true"></mat-checkbox>&nbsp;
+                    <input type="text" [(ngModel)]="option.option" placeholder="option {{ind+1}}" >
+                    <button mat-icon-button [disabled]="question.options.length<=1" color="warn" (click)=deleteOption(ind) matTooltip="Delete this option."><mat-icon>delete_outline</mat-icon></button>
+                  </section>
+                </div>
+                  <button mat-icon-button color="primary" (click)="addOptions()" matTooltip="Add new option."><mat-icon>add</mat-icon></button>
+                
+            </div>
+  
+            <!-- Radio  button -->
+            <div *ngIf="question.selected_type == 'radio_button'" style="text-align:left;padding-left: 20px;" >
+              
+                <div *ngFor="let option of question.options; let indt = index"  >
+                  <mat-radio-group>
+                    <mat-radio-button disabled="true">
+                    </mat-radio-button>&nbsp;
+                  </mat-radio-group>
+                    <input type="text" [(ngModel)]="option.option" placeholder="option {{indt+1}}" >
+                    <button mat-icon-button [disabled]="question.options.length<=1" color="warn" (click)=deleteOption(indt) matTooltip="Delete this option."><mat-icon>delete_outline</mat-icon></button>
+                </div>
+                  <button mat-icon-button color="primary" (click)="addOptions()" matTooltip="Add new option."><mat-icon>add</mat-icon></button>
+              
+            </div>
+   
+     
+        
+        </div>
+        <mat-action-row>
+          <div class="flex-container-right">
+            <button mat-icon-button color="primary" (click)="submit()" matTooltip="Update questions."><mat-icon>update</mat-icon></button>
+          </div>
+          </mat-action-row>
+
+  </div>
+  

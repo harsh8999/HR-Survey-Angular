@@ -1,6 +1,9 @@
-<div style="text-align:center;margin: 50px 100px;" class="example-container" [class.mat-elevation-z8]="isActive" >
-    <form [formGroup]="myForm"  >
-        
+<div  class="example-container">
+    <form [formGroup]="myForm">
+        <div class="flex-container-right">
+
+        <button mat-icon-button color="warn" (click)="onCancel()"><mat-icon>close</mat-icon></button>
+        </div>
           <h3>Add Question</h3>
             
       <div formArrayName="questionGroup" style="margin: 50px 50px;padding: 5px">
@@ -66,13 +69,8 @@
       </div>
      
         <div>
-            <button mat-raised-button color="warn" (click)="onCancel()">Close</button>
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            <button mat-raised-button color="primary" [disabled]="myForm.invalid" (click)="submit()">Submit</button>
+          <button mat-raised-button color="primary" [disabled]="myForm.invalid" (click)="submit()">Submit</button>
         </div>
-      
     </form>
   </div>
   
